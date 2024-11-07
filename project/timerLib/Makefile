@@ -1,7 +1,7 @@
 all: libTimer.a
 
 CPU             = msp430g2553
-CFLAGS          = -mmcu=${CPU}
+CFLAGS          = -mmcu=${CPU} 
 
 #switch the compiler (for the internal make rules)
 CC              = msp430-elf-gcc
@@ -17,5 +17,4 @@ install: libTimer.a
 	cp *.h ../h
 
 clean:
-
 	rm -f timerLib.a *.o
