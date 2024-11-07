@@ -1,22 +1,41 @@
-# makefile configuration
-COMMON_OBJECTS =
+# makfile configuration
 
-CPU            = msp430g2553
-CFLAGS         = -mmcu=${CPU} -I../h
-LDFLAGS        = -L/opt/ti/msp430_gcc/include
+COMMON_OBJECTS  =
 
-# switch the compiler (for the internal rules)
-CC             = msp430-elf-gcc
-AS             = msp430-elf-as
+CPU             = msp430g2553
 
-all: uimain.elf
+CFLAGS          = -mmcu=${CPU} -I../h
 
-# additional rules for files
-uimain.elf: ${COMMON_OBJECTS} uimain.o led.o switches.o statemachines.o wdInterrupthandler.o p2_interrupt_handler.o
+LDFLAGS		= -L/opt/ti/msp430_gcc/include
+
+
+
+#switch the compiler (for the internal make rules)
+
+CC              = msp430-elf-gcc
+
+AS              = msp430-elf-as
+
+
+
+all: main.elf
+
+
+
+#additional rules for files
+
+main.elf: ${COMMON_OBJECTS} main.o led.o switches.o statemachines.o buzzer.o wdInterrupthandler.o p2_interrupt_handler.o ../lib/libTimer.a
+
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
-load: uimain.elf
-	msp430loader.sh uimain.elf
+
+
+load: main.elf
+
+	msp430loader.sh main.elf
+
+
 
 clean:
+
 	rm -f *.o *.elf *~
