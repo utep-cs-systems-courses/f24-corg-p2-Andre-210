@@ -13,6 +13,7 @@ void next_state(int state) {
     leds_off();
     red_led_on();
     // fur_Elise();
+    buzzer_set_period(1000);
     leds_off();
     break;
   case 2:
@@ -20,6 +21,7 @@ void next_state(int state) {
     leds_off();
     red_led_on();
     // happy_Bday();
+    buzzer_set_period(1000);
     leds_off();
     break;
   case 3:
@@ -27,6 +29,7 @@ void next_state(int state) {
     leds_off();
     red_led_on();
     // Mario();
+    buzzer_set_period(1000);
     leds_off();
     break;
   case 4:
@@ -34,6 +37,7 @@ void next_state(int state) {
     leds_off();
     red_led_on();
     // runaway();
+    buzzer_set_period(1000);
     leds_off();
     break;
   default:
@@ -41,5 +45,5 @@ void next_state(int state) {
     break;
   }
   // turn on the green led to indicate that the MSP ready for the next step.
-  green_led_on();
+  red_led_on();
 }
